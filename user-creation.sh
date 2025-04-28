@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-# Found online as a snippet. Keeps script from being run without sudo privalages.
-if [ "$EUID" -ne 0 ]; then
-  echo "Please run as root (use sudo)"
-  exit 1
-fi
-
-
 
 # 1. Create a new user
 # prompt username creation
