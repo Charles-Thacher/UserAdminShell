@@ -18,20 +18,21 @@ function check_for_existence {
     
     if grep -q "^${username}:" /etc/passwd; then
         echo "$username is not available."
-            read -p "Do you want to proceed? (Y/N): " answer
-    case "$answer" in
-        [Yy]*) 
-            do_something
-            ;;
-        [Nn]*) 
-            echo "Exiting."
-            exit 0
-            ;;
-        *) 
-            echo "Invalid response. Exiting."
-            exit 1
-            ;;
-    esac
+
+        read -p "Do you want to try again? (Y/N): " answer
+        case "$answer" in
+            [Yy]*) 
+                do_something
+                ;;
+            [Nn]*) 
+                echo "Exiting."
+                exit 0
+                ;;
+            *) 
+                echo "Invalid response. Exiting."
+                exit 1
+                ;;
+        esac
 
     else
         echo "$username is available. Creating user $username."
@@ -40,7 +41,7 @@ function check_for_existence {
             echo "$username successfully created!"
         else
             echo "Failed to create account for username "$username.\nScript failed.\n\nExiting."
-
+        fi
     fi
 }
 
