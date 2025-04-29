@@ -10,7 +10,7 @@ fi
 # 1. Create a new user
 # prompt username creation
 read -p "Enter new username: " username
-read -p "Enter name: " name_of_user
+read -p "Enter full name: (e.g. John Smith) " name_of_user
 
 function create_user {
     # This function checks if a user exists and creates it if it doesn't
@@ -32,9 +32,9 @@ function create_user {
     if [[ ! $name_of_user =~ ^[A-Za-z\s]+$ ]]; then
         echo "$name_of_user is not valid."
         echo
-        echo "You may only use the Latin alphabet. (A–Z or a–z)."
+        echo "You may only use the Latin alphabet and spaces. (A–Z or a–z)."
         echo
-        echo "Sorry hyphen names and apostrophe names, I couldn't get the regex working."
+        echo "Sorry hyphenated and apostrophed names, I couldn't get the regex working."
         echo
         echo "Exiting."
         exit 1

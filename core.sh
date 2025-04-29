@@ -1,6 +1,39 @@
 #!/bin/bash
 
+if [ $(id -u) -ne 0 ]; then
+    echo "Script failed. Super user required."
+    exit -1
+fi
+
+read -p "Select an option:" option
+
+echo "1. Create User"
+echo "2. Delete User"
+echo "3. Administrate User"
+echo "  a. List Users"
+echo "  b. Change User Groups"
+echo "  c. Change User Permissions"
+echo "X. Exit"
+
 # 0. Select functions
+case $option in
+    1 | 1. | create | create\ user)
+        echo "Create User"
+        ;;
+    2 | 2. | delete | delete\ user)
+        echo "You chose to delete a user."
+        ;;
+    3 | 3. | admin | admin\ user | administrate | administrate\ user)
+        echo "You chose to administrate users."
+    x | x.| exit)
+        echo "You chose to exit."
+        echo
+        echo "Closing process."
+        exit 0
+    *)
+        echo "Invalid input. Exiting."
+        exit -1
+esac
 
 # Call proper module
 ## Creation
