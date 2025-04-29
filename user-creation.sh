@@ -1,24 +1,33 @@
 #!/usr/bin/env bash
 
+# Sudo required to run script
+if [ $(id -u) -ne 0 ]; then
+    echo "Script failed. Super user required."
+    exit -1
+fi
+
 
 # 1. Create a new user
 # prompt username creation
+read -p "Enter new username: " username
 
 function create_user {
     # This function checks if a user exists and creates it if it doesn't
 
-    read -p "Enter new username: " username
-
     echo "Checking if $username is valid."
 
-    # ensure username only contains valid alphanumerica characters
-    if [[ ! "$username" =~ ^[a-zA-z0-9_]+$ ]]; then
-        
+    # ensure username only contains valid alphanumerical characters
+    if [[ ! "$username" -ne ^[a-zA-z0-9_]+$ ]]; then
+        echo "$username is not valid."
+        echo
+        echo "You may only use alpha-numeric characters. (A-z, 0-9)."
+        echo
+        echo "Exiting."
 
-    else
-        
+        exit -1        
     fi
 
+    # check for availability
     echo "Checking if $username exists."
     
     if grep -q "^${username}:" /etc/passwd; then
@@ -27,15 +36,15 @@ function create_user {
         read -p "Do you want to try again? (Y/N): " answer
         case "$answer" in
             [Yy]*) 
-                do_something
+                create_user
                 ;;
             [Nn]*) 
-                echo "Exiting."
+                echo "Script cancelled. Exiting."
                 exit 0
                 ;;
             *) 
                 echo "Invalid response. Exiting."
-                exit 1
+                exit -1
                 ;;
         esac
 
@@ -51,21 +60,35 @@ function create_user {
             echo "Script failed."
             echo
             echo "Exiting."
-            exit 1
+            exit -1
         fi
     fi
 }
 
 
-
-
 function select_password {
-
+    passwd $username
 }
 
 
-choose_username
+create_user
+select_password
 
+read -p "Would you like to configure settings for "$username"? (Y/N): " answer
+        case "$answer" in
+            [Yy]*) 
+                ./user-admin.sh
+                ;;
+            [Nn]*) 
+                echo "Script finished. Exiting."
+                exit 0
+                ;;
+            *) 
+                echo "Invalid response. Exiting."
+                exit -1
+                ;;
+        esac
 
-# 2. Initial configuration of user
+exit
+
 
