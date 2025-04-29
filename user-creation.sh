@@ -1,16 +1,21 @@
 #!/bin/bash
 
+# Functions in this source:
+# creation_prompt
+# create_user
+# select_password
+
 # Sudo required to run script
 if [ $(id -u) -ne 0 ]; then
     echo "Script failed. Super user required."
     exit -1
 fi
 
-
-# 1. Create a new user
 # prompt username creation
-read -p "Enter new username: " username
-read -p "Enter full name: (e.g. John Smith) " name_of_user
+function creation_prompt {
+    read -p "Enter new username: " username
+    read -p "Enter full name: (e.g. John Smith) " name_of_user
+}
 
 function create_user {
     # This function checks if a user exists and creates it if it doesn't
@@ -85,25 +90,22 @@ function select_password {
     passwd $username
 }
 
-
-create_user
-select_password
-
-read -p "Would you like to configure settings for "$username"? (Y/N): " answer
-        case "$answer" in
-            [Yy]*) 
-                ./user-admin.sh
-                ;;
-            [Nn]*) 
-                echo "Script finished. Exiting."
-                exit 0
-                ;;
-            *) 
-                echo "Invalid response. Exiting."
-                exit -1
-                ;;
-        esac
-
-exit
+function end_user_creation {
+    read -p "Would you like to configure settings for "$username"? (Y/N): " answer
+            case "$answer" in
+                [Yy]*) 
+                    ./user-admin.sh
+                    ;;
+                [Nn]*) 
+                    echo "Script finished. Exiting."
+                    exit 0
+                    ;;
+                *) 
+                    echo "Invalid response. Exiting."
+                    exit -1
+                    ;;
+            esac
+    exit
+}
 
 

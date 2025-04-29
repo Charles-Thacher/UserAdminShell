@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Bash sources
+source ./user-creation.sh
+source ./user-admin.sh
+source ./user-deletion.sh
+
 if [ $(id -u) -ne 0 ]; then
     echo "Script failed. Super user required."
     exit -1
@@ -7,10 +12,10 @@ fi
 
 echo "1. Create User"
 echo "2. Delete User"
-echo "3. Administrate User"
-echo "  a. List Users"
-echo "  b. Change User Groups"
-echo "  c. Change User Permissions"
+echo "3. Administrate Users"
+echo "  - List Users"
+echo "  - Change User Groups"
+echo "  - Change User Permissions"
 echo "X. Exit"
 
 read -p "Select an option:" option
@@ -25,14 +30,17 @@ case $option in
         ;;
     3 | 3. | admin | admin\ user | administrate | administrate\ user)
         echo "You chose to administrate users."
+        ;;
     x | x.| exit)
         echo "You chose to exit."
         echo
         echo "Closing process."
         exit 0
+        ;;
     *)
         echo "Invalid input. Exiting."
         exit -1
+        ;;
 esac
 
 # Call proper module
