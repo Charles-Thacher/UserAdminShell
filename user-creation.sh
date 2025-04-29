@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Sudo required to run script
 if [ $(id -u) -ne 0 ]; then
