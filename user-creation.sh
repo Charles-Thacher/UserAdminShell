@@ -10,6 +10,7 @@ fi
 # 1. Create a new user
 # prompt username creation
 read -p "Enter new username: " username
+read -p "Enter name: " name_of_user
 
 function create_user {
     # This function checks if a user exists and creates it if it doesn't
@@ -21,6 +22,17 @@ function create_user {
         echo "$username is not valid."
         echo
         echo "You may only use alpha-numeric characters. (A-z, 0-9)."
+        echo
+        echo "Exiting."
+
+        exit -1        
+    fi
+
+    
+    if [[ ! "$name_of_user" -ne ^[a-zA-z_]+$ ]]; then
+        echo "$username is not valid."
+        echo
+        echo "You may only use the Latin alphabet. (A-z)."
         echo
         echo "Exiting."
 
@@ -49,8 +61,10 @@ function create_user {
         esac
 
     else
+        echo
         echo "$username is available. Creating user $username."
-        useradd "$username"
+        echo
+        useradd -m "$username" -c "$name_of_user"
 
         if grep -q "^${username}:" /etc/passwd; then
             echo "$username successfully created!"
