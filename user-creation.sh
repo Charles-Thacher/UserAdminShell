@@ -18,7 +18,7 @@ function create_user {
     echo "Checking if $username is valid."
 
     # ensure username only contains valid alphanumerical characters
-    if [[ ! "$username" -ne ^[a-zA-z0-9_]+$ ]]; then
+    if [[ ! "$username" =~ ^[a-zA-z0-9_]+$ ]]; then
         echo "$username is not valid."
         echo
         echo "You may only use alpha-numeric characters. (A-z, 0-9)."
@@ -29,7 +29,7 @@ function create_user {
     fi
 
     
-    if [[ ! "$name_of_user" -ne ^[a-zA-z_]+$ ]]; then
+    if [[ ! "$name_of_user" =~ ^[a-zA-z_]+$ ]]; then
         echo "$username is not valid."
         echo
         echo "You may only use the Latin alphabet. (A-z)."
