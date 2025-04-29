@@ -5,8 +5,6 @@ if [ $(id -u) -ne 0 ]; then
     exit -1
 fi
 
-read -p "Select an option:" option
-
 echo "1. Create User"
 echo "2. Delete User"
 echo "3. Administrate User"
@@ -14,6 +12,8 @@ echo "  a. List Users"
 echo "  b. Change User Groups"
 echo "  c. Change User Permissions"
 echo "X. Exit"
+
+read -p "Select an option:" option
 
 # 0. Select functions
 case $option in
