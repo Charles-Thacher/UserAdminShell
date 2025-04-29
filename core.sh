@@ -24,6 +24,8 @@ read -p "Select an option:" option
 case $option in
     1 | 1. | create | create\ user)
         echo "Create User"
+        creation_prompt
+        create_user
         ;;
     2 | 2. | delete | delete\ user)
         echo "You chose to delete a user."
