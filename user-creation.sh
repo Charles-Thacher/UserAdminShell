@@ -29,8 +29,8 @@ function create_user {
     fi
 
     
-    if [[ ! "$name" =~ ^[A-Za-z\' -]+$ ]]; then
-        echo "$name is not valid."
+    if [[ ! $name_of_user =~ ^[A-Za-z\' -]+$ ]]; then
+        echo "$name_of_user is not valid."
         echo
         echo "You may only use the Latin alphabet. (A–Z or a–z), apostrophes (') and hyphens (-)."
         echo
