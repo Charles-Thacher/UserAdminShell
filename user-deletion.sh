@@ -20,7 +20,6 @@ function backup_user_home {
     tar -czf "$backup_dir" "$home_dir"
     if [[ $? -eq 0 ]]; then 
         echo "Backup successful."
-        exit 0
     else
         echo "Backup failed."
         exit -1
@@ -34,7 +33,7 @@ function delete_user {
     read -p "Enter username to be deleted: " user
 
     backup_user_home "$user"
-    
+
     if [[ $? -ne 0 ]]; then
         echo "Aborting user deletion due to backup failure."
         exit -1
