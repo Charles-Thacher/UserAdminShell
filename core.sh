@@ -37,14 +37,14 @@ case $option in
         # another case switch
                 case "$suboption" in
             a | a. | list | list\ users)
-                echo "Listing all users:"
-                cut -d: -f1 /etc/passwd
+                echo "Listing all (human) users:"
+                list_users
                 ;;
             b | b. | groups | change\ groups)
                 echo "Changing user group (stub)..."
                 # Placeholder for group change logic
                 ;;
-            c | c. | permissions | change\ permissions)
+            c | c. | permissions | change\ permissions | perms)
                 echo "Changing user permissions (stub)..."
                 # Placeholder for permission logic
                 ;;
