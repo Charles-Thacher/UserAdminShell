@@ -51,7 +51,8 @@ case $option in
                 change_password
                 ;;
             c | c. | backup | backup\ user | perms)
-                backup_user_home
+                read -p "Select user to backup: " user
+                backup_user_home "$user"
                 ;;
             *)
                 echo "Invalid sub-option."
