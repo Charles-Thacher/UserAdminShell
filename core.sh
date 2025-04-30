@@ -33,6 +33,27 @@ case $option in
     3 | 3. | admin | admin\ user | administrate | administrate\ user)
         echo "You chose to administrate users."
         ;;
+        
+        # another case switch
+                case "$suboption" in
+            a | a. | list | list\ users)
+                echo "Listing all users:"
+                cut -d: -f1 /etc/passwd
+                ;;
+            b | b. | groups | change\ groups)
+                echo "Changing user group (stub)..."
+                # Placeholder for group change logic
+                ;;
+            c | c. | permissions | change\ permissions)
+                echo "Changing user permissions (stub)..."
+                # Placeholder for permission logic
+                ;;
+            *)
+                echo "Invalid sub-option."
+                exit 1
+                ;;
+        esac
+        ;;
     x | x.| exit)
         echo "You chose to exit."
         echo
