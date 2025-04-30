@@ -47,9 +47,8 @@ case $option in
                 echo "Listing all (human) users:"
                 list_users
                 ;;
-            b | b. | groups | change\ groups)
-                echo "Changing user group (stub)..."
-                # Placeholder for group change logic
+            b | b. | password | change\ password)
+                change_password
                 ;;
             c | c. | permissions | change\ permissions | perms)
                 echo "Changing user permissions (stub)..."
