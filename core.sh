@@ -32,10 +32,15 @@ case $option in
         ;;
     3 | 3. | admin | admin\ user | administrate | administrate\ user)
         echo "You chose to administrate users."
+        echo
+        echo "a. List Users"
+        echo "b. Change Password"
+        echo "c. Change Permissions"
+        read -p "Please choose suboption: " suboption
         ;;
         
-        # another case switch
-                case "$suboption" in
+        # call case switch for user admin
+        case "$suboption" in
             a | a. | list | list\ users)
                 echo "Listing all (human) users:"
                 list_users

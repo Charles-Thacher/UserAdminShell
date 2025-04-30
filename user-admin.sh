@@ -10,4 +10,4 @@ function list_users {
 }
 
 
-# Option 2: Change password
+# Option b: Change password
