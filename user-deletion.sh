@@ -2,7 +2,8 @@
 
 # user backups
 function backup_user_home {
-    read -p "Select user to delete: " user
+    local user=$1 # user parameter
+    # read -p "Select user to delete: " user
 
     # Check if the user exists
     if ! id "$user" &>/dev/null; then
@@ -26,6 +27,28 @@ function backup_user_home {
     fi
 }
 
-# Move assets to /var/backups/users
-# 3. Delete the user
-userdel -r "$username"
+
+# delete the user
+function delete_user {
+    read -p "Enter username to be deleted: " user
+
+    backup_user_home "$user"
+    if [[ $? -ne 0 ]]; then
+        echo "Aborting user deletion due to backup failure."
+        exit -1
+    fi
+
+    # Actually delete the user
+    read -p "Do you really want to delete user '$user'? [y/N]: " confirm
+    if [[ "$confirm" =~ ^[Yy]$ ]]; then
+        userdel -r "$user"
+        if [[ $? -eq 0 ]]; then
+            echo "User '$user' has been deleted."
+        else
+            echo "Failed to delete user '$user'."
+        fi
+    else
+        echo "Deletion cancelled."
+    fi
+
+}
