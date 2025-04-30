@@ -14,11 +14,11 @@ echo "1. Create User"
 echo "2. Delete User"
 echo "3. Administrate Users"
 echo "  - List Users"
-echo "  - Change User Groups"
-echo "  - Change User Permissions"
+echo "  - Change User Password"
+echo "  - Backup User Home Dir"
 echo "X. Exit"
 
-read -p "Select an option:" option
+read -p "Select an option: " option
 
 # 0. Select functions
 case $option in
@@ -50,9 +50,8 @@ case $option in
             b | b. | password | change\ password)
                 change_password
                 ;;
-            c | c. | permissions | change\ permissions | perms)
-                echo "Changing user permissions (stub)..."
-                # Placeholder for permission logic
+            c | c. | backup | backup\ user | perms)
+                backup_user_home
                 ;;
             *)
                 echo "Invalid sub-option."

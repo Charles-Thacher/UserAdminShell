@@ -15,5 +15,10 @@ function change_password {
     read -p "Enter user whose password you would like to change: " user
     read -p "Enter new password: " new_pass
     echo "Changing user password."
-    echo '$user:$new_pass' | chpasswd
+    echo "$user:$new_pass" | chpasswd
 }
+
+# Future options to implement:
+# lock user account
+# change user permissions
+# change user group
