@@ -26,6 +26,9 @@ case $option in
         echo "Create User"
         creation_prompt
         create_user
+        echo "User sucessfully created. Exiting."
+        echo
+        exit 0
         ;;
     2 | 2. | delete | delete\ user)
         echo "You chose to delete a user."
@@ -70,10 +73,6 @@ case $option in
         ;;
 esac
 
-# Call proper module
-## Creation
-## Admin
-## Deletion
 
 # Once module exits, do clean up and exit
 ## Maybe provide another option to re-run module or select another one

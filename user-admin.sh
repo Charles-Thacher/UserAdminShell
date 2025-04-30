@@ -11,3 +11,7 @@ function list_users {
 
 
 # Option b: Change password
+function change_password {
+    echo "Changing user password."
+    echo 'user:passwd' | chpasswd
+}

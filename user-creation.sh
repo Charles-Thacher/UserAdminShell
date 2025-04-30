@@ -90,22 +90,22 @@ function select_password {
     passwd $username
 }
 
-function end_user_creation {
-    read -p "Would you like to configure settings for "$username"? (Y/N): " answer
-            case "$answer" in
-                [Yy]*) 
-                    ./user-admin.sh
-                    ;;
-                [Nn]*) 
-                    echo "Script finished. Exiting."
-                    exit 0
-                    ;;
-                *) 
-                    echo "Invalid response. Exiting."
-                    exit -1
-                    ;;
-            esac
-    exit
-}
+# function end_user_creation {
+#     read -p "Would you like to configure settings for "$username"? (Y/N): " answer
+#             case "$answer" in
+#                 [Yy]*) 
+#                     ./user-admin.sh
+#                     ;;
+#                 [Nn]*) 
+#                     echo "Script finished. Exiting."
+#                     exit 0
+#                     ;;
+#                 *) 
+#                     echo "Invalid response. Exiting."
+#                     exit -1
+#                     ;;
+#             esac
+#     exit
+# }
 
 
