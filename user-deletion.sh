@@ -30,9 +30,11 @@ function backup_user_home {
 
 # delete the user
 function delete_user {
+    # reads user input to call backup function
     read -p "Enter username to be deleted: " user
 
     backup_user_home "$user"
+    
     if [[ $? -ne 0 ]]; then
         echo "Aborting user deletion due to backup failure."
         exit -1

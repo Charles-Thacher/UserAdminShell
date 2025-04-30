@@ -32,6 +32,7 @@ case $option in
         ;;
     2 | 2. | delete | delete\ user)
         echo "You chose to delete a user."
+        delete_user
         ;;
     3 | 3. | admin | admin\ user | administrate | administrate\ user)
         echo "You chose to administrate users."
@@ -51,6 +52,7 @@ case $option in
                 change_password
                 ;;
             c | c. | backup | backup\ user | perms)
+                # select user, then call backup                
                 read -p "Select user to backup: " user
                 backup_user_home "$user"
                 ;;
