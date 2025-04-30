@@ -37,7 +37,6 @@ case $option in
         echo "b. Change Password"
         echo "c. Change Permissions"
         read -p "Please choose suboption: " suboption
-        ;;
         
         # call case switch for user admin
         case "$suboption" in
